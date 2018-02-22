@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" id="ain" value="" />
+		<input type="button" name="btn1" id="btn1" value="点击创建" />
+		<ul id="oUl">
+			
+		</ul>
+		<script type="text/javascript">
+			var oul=document.getElementById("oUl");
+			window.onload=function(){
+				var btn=document.getElementById("btn1");
+				var oIn=document.getElementById("ain");
+				btn.onclick=function(){
+					var ali=document.createElement("li");
+					var al=oul.getElementsByTagName("li");//获取所有的li标签
+					oul.insertBefore(ali,al[0]);//insertBefore有两个参数ali是插入的内容，al[0]是插入到谁之前
+//					oul.appendChild(ali);//在后面追加
+					ali.innerHTML=oIn.value;
+				}
+			};
+		</script>
+	</body>
+</html>

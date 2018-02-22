@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+//			function person(name,age){
+//				var obj=new Object();
+//				obj.name=name;
+//				obj.age=age;
+//				obj.showname=function(){
+//					alert(this.name);
+//				}
+//				obj.showage=function(){
+//					alert(this.age);
+//				}
+//				return obj;
+//			}
+//			obj1=person("a",12);
+//			obj1.showname();
+//			obj2=person("b",18);
+//			obj2.showname();
+//          alert(obj1.showname==obj2.showname)//得到的结果为false
+			
+			
+			//上面的代码遇到的问题总结
+			//1.调用方法时，没有使用new关键字，这是因为，new person（）（new 一个类）之后，
+			//系统会在方法体内部自动创建this指向新创建的对象，所以若是使用new 构造函数的方法，内部要用
+			//this进行属性以及方法的设置
+			//2.obj1的showname方法和obj2的showname方法是相同的，
+			//但是下方alert(obj1.showname==obj2.showname)却是false
+			//这样会造成资源浪费
+			//console.log(obj1.showname+","+obj2.showname);
+			//alert(obj1.showname==obj2.showname);
+			
+			//下面的方法会有效的改善上面的问题--不使用new以及资源浪费问题
+			function Person(name,age){
+				this.name=name;//使用new调用person方法，内部使用系统自动创建的this进行属性设置
+				this.age=age;
+				//return obj;
+			}
+			//在方法体外部写原型，不在内部，但是试了一下，在内部也不报错，不知道为什么写在外部？
+			Person.prototype.showname=function(){
+				alert(this.name);
+			}
+			Person.prototype.showage=function(){
+				alert(this.age);
+			}
+			
+			var obj1=new Person("c",13);//使用new方法进行调用
+			var obj2=new Person("d",14);
+			//使用new关键字，并且使用原型，下面的代码依然可以正常运行
+			obj1.showname();
+			obj1.showage();
+			obj2.showname();
+			obj2.showage();
+			
+			alert(obj1.showname==obj2.showname);//这里得到的结果为ture，
+												//这样不会造成资源浪费的情况
+		</script>
+	</body>
+</html>

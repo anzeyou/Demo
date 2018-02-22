@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标移动事件-物体随鼠标移动</title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background: red;
+				position:absolute;
+			}
+		</style>
+	</head>
+	
+	<body style="height: 2000px;">
+		<div id="div1"></div>
+		<script type="text/javascript">
+			document.onmousemove=function(e){
+				var oEvent=e||event;
+				var div1=document.getElementById("div1");
+				var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
+				div1.style.left=oEvent.clientX+"px";
+				div1.style.top=oEvent.clientY+scrolltop+"px";
+			}
+			//clientX,clientY是可见的x和y坐标 所以当页面存在下拉框时，得加上scrolltop才能使运动正确
+			
+			
+		</script>
+		
+		
+	</body>
+</html>

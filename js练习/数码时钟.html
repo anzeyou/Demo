@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数码时钟</title>
+	</head>
+	<body>
+		<input type="text" name="" id="" value="00" /> :
+		<input type="text" name="" id="" value="00" /> :
+		<input type="text" name="" id="" value="00" /> 
+		
+		<script type="text/javascript">
+			window.onload=function(){
+				setInterval(show,1000);
+				function show(){
+					var noTime=new Date();
+					str1=noTime.getHours();
+					str2=noTime.getMinutes();
+					str3=noTime.getSeconds();
+					inp=document.getElementsByTagName("input");
+					inp[0].value=str1;
+					inp[1].value=str2;
+					inp[2].value=str3;
+				}
+				
+			}
+			
+			
+			//上面的方法，在页面刚被打开的时候，事件为00：00：00，因为程序运行到定时器位置，
+			//会在1秒之后运行，所以，1秒之后显示的事件为系统事件
+			
+			//解决办法如下：
+//			window.onload=function(){
+//				setInterval(show,1000);
+//				//先调用show函数，会让页面在刚一打开就是系统时间
+//				show();
+//				
+//				function show(){
+//					var noTime=new Date();
+//					str1=noTime.getHours();
+//					str2=noTime.getMinutes();
+//					str3=noTime.getSeconds();
+//					inp=document.getElementsByTagName("input");
+//					inp[0].value=str1;
+//					inp[1].value=str2;
+//					inp[2].value=str3;
+//				}
+//				
+//			}
+		</script>
+	</body>
+</html>

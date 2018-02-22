@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background: red;
+				opacity: 0.3;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1" onmouseover="show(1)" onmouseout="show(0.3)"></div>
+		<script type="text/javascript">
+			var opa=0.3;
+			var div1=document.getElementById("div1");
+			var timer=null;
+			var speed=0;
+			//运动框架
+			function show(target){
+				clearInterval(timer);
+				setInterval(function(){
+					//速度初始化
+					if(opa<target){
+						speed=0.1;
+					}
+					else{
+						speed=-0.1;
+					}
+					//当前透明度判断
+					if(opa==target){
+						clearInterval(timer);
+					}
+					else{
+						opa+=speed;
+						div1.style.opacity=opa;
+//						alert(div1.style.opacity);
+					}
+				},30);
+			}
+		</script>
+	</body>
+</html>

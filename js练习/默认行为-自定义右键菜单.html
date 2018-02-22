@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				display: none;
+				position: absolute;
+			}
+			#div1 ul li{
+				list-style: none;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<ul>
+				<li>刷新</li>
+				<li>复制</li>
+				<li>粘贴</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			document.oncontextmenu=function(e){
+				var oEvent=e||event;
+				var div1=document.getElementById("div1");
+				div1.style.display="block";
+				div1.style.left=oEvent.clientX+"px";
+				div1.style.top=oEvent.clientY+"px";
+				return false;
+			};
+			document.onclick=function(){
+				var div1=document.getElementById("div1");
+				div1.style.display="none";
+			}
+		</script>
+	</body>
+</html>

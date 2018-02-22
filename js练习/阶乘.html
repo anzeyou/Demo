@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//阶乘---for循环
+			function jiecheng(n){
+				var sub=1;
+				for(var i=1;i<=n;i++){
+					sub*=i;
+				}
+				return sub;
+			}
+			alert(jiecheng(8));
+			
+			//阶乘--递归
+			function cheng(n){
+				if(n==1){
+					return 1;
+				}
+				else{
+					return n*cheng(n-1);
+				}
+			}
+			alert(cheng(8));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#div1{
+				width: 100px;
+				height: 150px;
+				background: red;
+				position: absolute;
+				right: 0px;
+				display: none;
+				/*bottom:50%;*/
+			}
+			body{
+				/*保证出现滚动条*/
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var timer=null;
+			var odiv=document.getElementById("div1");
+			window.onscroll=function(){
+				odiv.style.display="block";
+				//获取下拉位移
+				var scrolltop=document.documentElement.scrollTop;
+				startMove((document.documentElement.clientHeight-odiv.offsetHeight)/2+scrolltop);
+			};
+			function startMove(target){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					var speed=(target-odiv.offsetTop)/2;
+					//缓冲运动取整
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					if(odiv.offsetTop==target){
+						clearInterval(timer);
+					}
+					else{
+						odiv.style.top=odiv.offsetTop+speed+"px";
+					}
+				},30)
+			}
+		</script>
+	</body>
+</html>

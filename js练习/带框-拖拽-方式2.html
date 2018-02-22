@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖拽-带框-方式2</title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: yellow;
+				position: absolute;
+			}
+			.div2{
+				/*width: 98px;
+				height: 98px;*/
+				border: 1px dashed red;
+				position: absolute;
+				/*display: none;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var disX=0;
+				var disY=0;
+				document.onmousedown=function(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-div1.offsetLeft;
+					disY=oEvent.clientY-div1.offsetTop;
+					var div3=document.createElement("div");
+					div3.className="div2";
+					div3.style.width=div1.offsetWidth+"px";
+					div3.style.height=div1.offsetHeight+"px";
+					
+					div3.style.left=div1.offsetLeft+"px";
+					div3.style.top=div1.offsetTop+"px";
+					document.body.appendChild(div3);
+					
+					
+					document.onmousemove=function(ev){
+						var oEvent=ev||event;
+						div3.style.left=oEvent.clientX-disX+"px";
+						div3.style.top=oEvent.clientY-disY+"px";
+					}
+					
+					document.onmouseup=function(){
+						div1.style.left=div3.offsetLeft+"px";
+						div1.style.top=div3.offsetTop+"px";
+						
+						document.body.removeChild(div3);
+//						div3.style.display="none";
+						document.onmousemove=null;
+						document.onmouseup=null;
+					}
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>

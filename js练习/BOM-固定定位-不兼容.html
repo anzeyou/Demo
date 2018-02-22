@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>IE6下不兼容</title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				/*position:fixed在ie6下不兼容*/
+				position: fixed;
+				right: 0px;
+				bottom: 0px;
+			}
+			body{
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+	</body>
+</html>

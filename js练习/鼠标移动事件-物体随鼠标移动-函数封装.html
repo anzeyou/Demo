@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标移动事件-物体随鼠标移动-函数封装</title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 200px;
+				background: red;
+				position:absolute;
+			}
+		</style>
+	</head>
+	
+	<body style="height: 2000px;">
+		<div id="div1"></div>
+		<script type="text/javascript">
+			document.onmousemove=function(e){
+				var oEvent=e||event;
+				var pos=getpos(oEvent);//调用获取位置的函数，将时间对象传进去
+				var div1=document.getElementById("div1");
+				div1.style.left=pos.x+"px";
+				div1.style.top=pos.y+"px";
+			}
+			
+			//函数封装
+			function getpos(e){
+				var scrolltop=document.documentElement.scrollTop;
+				var scrollleft=document.documentElement.scrollLeft;
+				return{x:e.clientX+scrollleft,y:e.clientY+scrolltop};//将对象位置以json形式返回
+			}
+		</script>
+		
+		
+	</body>
+</html>

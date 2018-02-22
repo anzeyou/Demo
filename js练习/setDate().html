@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//setDate()会将传入的参数转换为对应的时间
+			var odate=new Date();
+			odate.setDate(odate.getDate()+10);//将当前天数+10天--》得到的是正确结果
+			alert(odate.getFullYear()+"--"+(odate.getMonth()+1)+"--"+odate.getDate());
+		</script>
+	</body>
+</html>

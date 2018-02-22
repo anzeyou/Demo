@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#parent {
+				width: 600px;
+				height: 20px;
+				background: #ccc;
+				margin: 10px auto;
+				position: relative;
+			}
+			
+			#div1 {
+				width: 20px;
+				height: 20px;
+				background: red;
+				position: absolute;
+				left: 0px;
+				right: 0px;
+			}
+			
+			#div2 {
+				width: 400px;
+				height: 300px;
+				border: 1px solid black;
+				overflow: hidden;
+				position: relative;
+			}
+			#div3{
+				position: absolute;
+				left: 0px;
+				top: 0pxs;
+				padding: 4px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="parent">
+			<div id="div1"></div>
+		</div>
+		<div id="div2">
+			<div id="div3">
+
+				习近平致信祝贺国际竹藤组织成立二十周年 确定了!房地产税将这样收:谁最害怕? 世界气象组织:2013-2017年为史上最暖五年期 国考报名将结束 这职位仅招1人1327人报考 安倍陪特朗普打高尔夫 一不小心摔了个底朝天 不谈"亚太"谈印太" 特朗普访华前在暗示什么? 那个把朴槿惠开除出党的人 摊上事儿了… 八成德国人认为这个国家才是他们的对手 千万别再给孩子取这名了!看完统计吓一跳(图) 租客拖延交租后失联 房F东进屋内见令人作呕一幕 大妈报警称家中发现大蜘蛛 民警到场后哭笑不得
+				习近平致信祝贺国际竹藤组织成立二十周年 确定了!房地产税将这样收:谁最害怕? 世界气象组织:2013-2017年为史上最暖五年期 国考报名将结束 这职位仅招1人1327人报考 安倍陪特朗普打高尔夫 一不小心摔了个底朝天 不谈"亚太"谈印太" 特朗普访华前在暗示什么? 那个把朴槿惠开除出党的人 摊上事儿了… 八成德国人认为这个国家才是他们的对手 千万别再给孩子取这名了!看完统计吓一跳(图) 租客拖延交租后失联 房F东进屋内见令人作呕一幕 大妈报警称家中发现大蜘蛛 民警到场后哭笑不得
+				习近平致信祝贺国际竹藤组织成立二十周年 确定了!房地产税将这样收:谁最害怕? 世界气象组织:2013-2017年为史上最暖五年期 国考报名将结束 这职位仅招1人1327人报考 安倍陪特朗普打高尔夫 一不小心摔了个底朝天 不谈"亚太"谈印太" 特朗普访华前在暗示什么? 那个把朴槿惠开除出党的人 摊上事儿了… 八成德国人认为这个国家才是他们的对手 千万别再给孩子取这名了!看完统计吓一跳(图) 租客拖延交租后失联 房F东进屋内见令人作呕一幕 大妈报警称家中发现大蜘蛛 民警到场后哭笑不得
+
+			</div>
+		</div>
+		<script type="text/javascript">
+			window.onload = function() {
+				var div1 = document.getElementById("div1");
+				var par = document.getElementById("parent");
+				var div2 = document.getElementById("div2");
+				var div3=document.getElementById("div3");
+				var disX = 0;
+				document.onmousedown = function(ev) {
+					var oEvent = ev || event;
+					disX = oEvent.clientX - div1.offsetLeft;
+
+					document.onmousemove = function(ev) {
+						var oEvent = ev || event;
+						if(oEvent.clientX - disX < 0) { //???注意这里不是  div1.offsetLeft<0-->看鼠标移动的距离？
+							div1.style.left = 0 + "px";
+						} else if(par.offsetWidth - div1.offsetWidth < oEvent.clientX - disX) {
+							div1.style.left = par.offsetWidth - div1.offsetWidth + "px";
+						} else {
+							div1.style.left = oEvent.clientX - disX + "px";
+						}
+
+						var bil = (oEvent.clientX - disX) / (par.offsetWidth - div1.offsetWidth);
+
+//						div2.style.opacity = bil; //因为透明度在0-1之间，所以直接让div2的透明度等于bil就可以了
+						div3.style.top=-(div3.offsetHeight-div2.offsetHeight)*bil+"px";
+
+						document.onmouseup = function() {
+							document.onmousemove = null;
+							document.onmouseup = null;
+						}
+					}
+					return false;
+				}
+			}
+		</script>
+	</body>
+
+</html>

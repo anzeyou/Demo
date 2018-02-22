@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				right: 0px;
+			}
+			body{
+				height: 1000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			var div1=document.getElementById("div1");
+			//定时器
+			var timer=null;
+			//移动速度
+			var speed=0;
+			window.onscroll=function(){
+				//获取下拉位移
+				var scroll=document.documentElement.scrollTop;
+				//目标位置（要运动到的目标点）
+				var target=(document.documentElement.clientHeight-div1.offsetHeight)/2+scroll;
+				clearInterval(timer);
+				timer=setInterval(function(){
+					var speed=(target-div1.offsetTop)/2;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					
+					if(div1.offsetTop==target){
+						clearInterval(timer);
+					}
+					else{
+
+						div1.style.top=div1.offsetTop+speed+"px";
+					}
+				},30)
+			}
+		</script>
+	</body>
+</html>

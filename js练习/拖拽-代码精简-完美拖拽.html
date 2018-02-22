@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var disX=0;
+				var disY=0;
+				//IE
+				if(div1.setCapture){
+					div1.onmousedown=mouseDown;
+				}
+				//FF、chorme
+				else{
+					div1.onmousedown=mouseDown;
+				}
+				
+				
+				
+				function mouseDown(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-div1.offsetLeft;
+					disY=oEvent.clientY-div1.offsetTop;
+					if(div1.setCapture){
+						div1.onmousemove=mouseMove;
+						div1.onmouseup=mouseUp
+						div1.setCapture();
+//						div1.releaseCapture();
+					}
+					else{
+						document.onmousemove=mouseMove;
+						document.onmouseup=mouseUp;
+					}
+				}
+				
+				function mouseMove(ev){
+					var oEvent=ev||event;
+					div1.style.left=oEvent.clientX-disX+"px";
+					div1.style.top=oEvent.clientY-disY+"px";
+						//左极限
+						if(div1.offsetLeft<0){
+							div1.style.left=0+"px";
+						}
+						//右极限位置
+						else if(document.documentElement.clientWidth-div1.offsetWidth<oEvent.clientX-disX){
+							div1.style.left=(document.documentElement.clientWidth-div1.offsetWidth)+"px";
+						}
+						//上极限位置
+						if(div1.offsetTop<0){
+							div1.style.top=0+"px";
+						}
+						//下极限位置
+						else if(document.documentElement.clientHeight-div1.offsetHeight<oEvent.clientY-disY){
+							div1.style.top=(document.documentElement.clientHeight-div1.offsetHeight)+"px";
+						}
+				}
+				function mouseUp(){
+					this.onmousemove=null;
+					this.onmouseup=null;
+			}
+		}
+		</script>
+	</body>
+</html>

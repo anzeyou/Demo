@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>只能输入数字版本</title>
+	</head>
+	<body>
+		<input type="text" id="txt" />
+		<script type="text/javascript">
+			window.onload=function(){
+				var txt=document.getElementById("txt");
+				txt.onkeydown=function(e){
+					if(e.keyCode<48||e.keyCode>57){
+						return false;//阻止浏览器的默认行为-当键盘按下，对应键盘上的值会被填加到文本框中
+					}
+				}
+				
+			}
+		</script>
+	</body>
+</html>

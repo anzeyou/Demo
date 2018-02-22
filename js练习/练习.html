@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>图片自动切换</title>
+	</head>
+	<style>
+		body {
+			margin: 100px;
+		}
+		
+		p,
+		img,
+		div,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#content {
+			width: 600px;
+			height: 400px;
+			border: 1px solid #F00;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		#img1 {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		
+		#img2 {
+			position: absolute;
+			top: 0;
+			left: 600px;
+		}
+		
+		#intro {
+			width: 600px;
+			height: 60px;
+			position: absolute;
+			top: 340px;
+			left: 0;
+		}
+		
+		p {
+			width: 600px;
+			height: 60px;
+			background: #333;
+			opacity: 0.5;
+			position: absolute;
+		}
+		
+		span {
+			display: block;
+			width: 600px;
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			color: #fff;
+			position: absolute;
+			z-index: 2;
+		}
+	</style>
+	<script>
+		/*    
+		两个图片位置变换，同时把数组里的图片地址赋予图片    
+		*/
+
+		window.onload = function() {
+			var intro = document.getElementById('intro');
+			var oSpan = intro.getElementsByTagName('span')[0];
+			var oP = intro.getElementsByTagName('p')[0];
+			var img1 = document.getElementById('img1'); //图片1    
+			var img2 = document.getElementById('img2'); //图片2    
+			var oUl = document.getElementsByTagName('ul')[0];
+			var arr = ['img/01.jpg', 'img/02.jpg', 'img/03.jpg', 'img/04.jpg', 'img/05.jpg']; //图片地址    
+			var timer1 = null;
+			var timer2 = null;
+			var timer3 = null;
+			//初始化    
+			var n = 0;
+			var a = 0;
+			var b = 1;
+			intro.style['top'] = '400px';
+			oSpan.innerHTML = '图片说明' + (n + 1);
+			img1.src = arr[a];
+			img2.src = arr[b];
+
+			timer1 = setInterval(changeImg, 3000);
+			timer3 = setInterval(autoText, 30);
+
+			function changeImg() {
+				clearInterval(timer2);
+				clearInterval(timer3);
+				intro.style['top'] = '400px';
+				timer2 = setInterval(autoPic, 30);
+				timer3 = setInterval(autoText, 30);
+				n++;
+				n %= arr.length;
+				oSpan.innerHTML = '图片说明' + (n + 1);
+			};
+
+			function autoPic() {
+				var length1 = parseInt(getStyle(img1, 'left')) - 10;
+				var length2 = parseInt(getStyle(img2, 'left')) - 10;
+				img1.style['left'] = length1 + 'px';
+				img2.style['left'] = length2 + 'px';
+
+				if(length1 == -600) {
+					a += 2;
+					if(a >= arr.length) a -= arr.length;
+					img1.style['left'] = '600px';
+					img1.src = arr[a];
+					clearInterval(timer2);
+				}
+				if(length2 == -600) {
+					b += 2;
+					if(b >= arr.length) b -= arr.length;
+					img2.style['left'] = '600px';
+					img2.src = arr[b];
+					clearInterval(timer2);
+				}
+			};
+
+			function autoText() {
+				var height = parseInt(getStyle(intro, 'top')) - 2;
+				intro.style['top'] = height + 'px';
+				if(height <= 340) clearInterval(timer3);
+			};
+
+			function getStyle(obj, str) {
+				return obj.currentStyle ? obj.currentStyle[str] : getComputedStyle(obj)[str];
+			};
+		};
+	</script>
+
+	<body>
+		<div id="content">
+			<img id="img1" />
+			<img id="img2" />
+			<div id="intro">
+				<span></span>
+				<p></p>
+			</div>
+		</div>
+	</body>
+
+</html>

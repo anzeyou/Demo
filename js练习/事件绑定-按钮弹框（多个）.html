@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="btn" value="按钮"/>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn=document.getElementById("btn");
+				//IE
+				if(btn.attachEvent){
+					btn.attachEvent("click",function(){
+						alert("a");
+						});
+						btn.attachEvent("click",function(){
+							alert("b");
+						});
+				}
+				//FF
+				else{
+					btn.addEventListener("click",function(){
+						alert("a");
+					},false);
+					btn.addEventListener("click",function(){
+						alert("b");
+					},false);
+				}
+			};
+		</script>
+	</body>
+</html>

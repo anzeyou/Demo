@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css"></style>
+	</head>
+
+	<body>
+		<div id="div1">
+
+		</div>
+		<script type="text/javascript">
+			//下面函数的形参，内部声明的变量，函数声明都是关于a的，程序的预编译发生在函数执行前一刻
+			function fn(a){
+				//var a;根据形参，系统自动创建
+				//1）--函数a声明提升
+				//2）--函数d声明提升
+				console.log(a);
+				var a=123;
+				console.log(a);
+				function a(){}//函数执行前已被提升
+				console.log(a);
+				var b=function(){}
+				console.log(b);
+				function d(){}//函数执行前已被执行
+			}
+			fn(1);
+			//输出结果
+			//function (){}
+			//123
+			//123
+			//function (){}
+			
+			
+			//预编译过程(预编译过程发生在函数执行前一刻)的分析（输出结果分析）
+			//一、函数整理
+			//1.函数a属于函数声明，所以提升到 1）位置
+			//2.函数d属于函数声明，所以提升到 2）位置
+			//b函数的函数表达式，所以位置不变
+			//二、结果的输出
+			//第一个console.log(a),此时a是函数声明，输出function(){}
+			//第二个console.log(a),此时在此行代码的上方，有var a=123；所以此时的函数声明被覆盖，a的值变为123
+			//第三个console.log(a)，此时的a仍然是123
+			//第四个console.log(b)，此行代码的上方是b的函数表达式，所以输出结果是function (){}
+			
+			
+			//函数预编译后内部真实的代码情况--所以有了上方的输出结果
+//			function fn(a){
+//				//var a;根据形参，系统自动创建
+//				//1）--函数a声明提升
+//				function a(){}//函数执行前已被提升
+//				//2）--函数d声明提升
+//				function d(){}//函数执行前已被执行
+//				console.log(a);
+//				var a=123;
+//				console.log(a);
+//				console.log(a);
+//				var b=function(){}
+//				console.log(b);
+//			}
+//			fn(1);
+		</script>
+
+	</body>
+
+</html>

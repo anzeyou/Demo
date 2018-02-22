@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1
+			{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				right: 0px;
+				bottom: 0px;
+			}
+			body{
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			//利用绝对定位和scrollTop
+			window.onload=window.onresize=function(){
+				var div1=document.getElementById("div1");
+				
+				window.onscroll=change;
+				window.onresize=change;
+				
+				//页面滚动以及浏览窗口的大小改变时
+				function change(){
+					var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
+					div1.style.top=scrolltop+document.documentElement.clientHeight-div1.offsetHeight+"px";
+				};
+			};
+		</script>
+	</body>
+</html>

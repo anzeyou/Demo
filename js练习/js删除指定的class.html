@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.bd{
+				background: red;
+			}
+			.user{
+				font-size: 28px;
+			}
+			.disabled{
+				color: yellow;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bd disabled user"id="div1">fdjlajd</div>
+		<script type="text/javascript">
+			
+			var div=document.getElementById("div1");
+			var classnames=div.className.split(" ");//以空格分隔
+			var pos=-1;
+			var len=classnames.length;
+			for(var i=0;i<len;i++){
+				if(classnames[i]=="user"){
+					pos=i;//记录className=user的位置--不写没事	
+					break;
+				}
+			}
+			alert(pos);//输出2--className=user的位置--不写没事
+			classnames.splice(i,1);
+			div.className=classnames.join(" ");//空格连接
+		</script>
+
+	</body>
+
+</html>

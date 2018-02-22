@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>输入数字升级版</title>
+	</head>
+	<body>
+		<input type="text" id="txt" />
+		<script type="text/javascript">
+			window.onload=function(){
+				var txt=document.getElementById("txt");
+				txt.onkeydown=function(e){
+					if(e.keyCode<48||e.keyCode>57){
+						if(e.keyCode!=8&&e.keyCode!=37&&e.keyCode!=38&&e.keyCode!=39&&e.keyCode!=40){
+							return false;
+						}
+					}
+				}
+				
+			}
+		</script>
+	</body>
+</html>

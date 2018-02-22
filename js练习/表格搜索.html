@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		姓名：<input type="text" name="" id="name" value="" />
+		<input type="button" name="" id="search" value="搜索" />
+		<table border="1px" width="500px" id="atab"> 
+			<thead>
+				<td>id</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>操作</td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Blue</td>
+					<td>27</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>张三</td>
+					<td>21</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>李四</td>
+					<td>25</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>李五</td>
+					<td>21</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		<script type="text/javascript">
+			window.onload=function(){
+				var name=document.getElementById("name");
+				var search=document.getElementById("search");
+				var table=document.getElementById("atab");
+				//全等式搜索
+//				search.onclick=function(){
+//					for(var i=0;i<table.tBodies[0].rows.length;i++){
+//						if(name.value==table.tBodies[0].rows[i].cells[1].innerHTML){
+//							table.tBodies[0].rows[i].style.background="red";
+//						}
+//						else{
+//							table.tBodies[0].rows[i].style.background="";
+//						}
+//					}
+//				}
+
+
+				//忽略大小写的模糊搜索------>toLowerCase()
+//				search.onclick=function(){
+//					for(var i=0;i<table.tBodies[0].rows.length;i++){
+//						if(name.value.toLowerCase()==table.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase()){
+//							table.tBodies[0].rows[i].style.background="red";
+//						}
+//						else{
+//							table.tBodies[0].rows[i].style.background="";
+//						}
+//					}
+//				}				
+				//模糊搜索-------->search()
+//				search.onclick=function(){
+//					var namevalue=name.value.toLowerCase();
+//					for(var i=0;i<table.tBodies[0].rows.length;i++){
+//						if(table.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase().search(namevalue)!=-1){
+//							table.tBodies[0].rows[i].style.background="red";
+//						}
+//						else{
+//							table.tBodies[0].rows[i].style.background="";
+//						}
+//					}
+//				}
+
+				//多关键词搜索----->split()
+//				search.onclick=function(){
+//					var namevalue=name.value.toLowerCase();
+//					var namearr=namevalue.toLowerCase().split(" ");//输入框多个关键词以空格隔开
+//						for(var i=0;i<table.tBodies[0].rows.length;i++){
+//							table.tBodies[0].rows[i].style.background="";
+//							for(var j=0;j<namearr.length;j++){
+//								if(table.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase().search(namearr[j])!=-1){
+//									table.tBodies[0].rows[i].style.background="red";
+//								}
+//								
+//							}
+//
+//							
+//						}
+//					}
+				
+			
+			
+			
+			
+			
+				
+			};
+			
+		</script>
+	</body>
+</html>

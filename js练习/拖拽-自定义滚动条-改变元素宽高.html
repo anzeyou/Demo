@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#parent{
+				width: 600px;
+				height: 20px;
+				background: #ccc;
+				margin: 10px auto;
+				position: relative;
+				
+			}
+			#div1{
+				width: 20px;
+				height: 20px;
+				background: red;
+				position: absolute;
+				left: 0px;
+				right: 0px;
+			}
+			#div2{
+				width: 0px;
+				height: 0px;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="parent">
+			<div id="div1"></div>
+		</div>
+		<div id="div2"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var par=document.getElementById("parent");
+				var div2=document.getElementById("div2");
+				var disX=0;
+				document.onmousedown=function(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-div1.offsetLeft;
+					
+					document.onmousemove=function(ev){
+						var oEvent=ev||event;
+						if(oEvent.clientX-disX<0){//???注意这里不是  div1.offsetLeft<0-->看鼠标移动的距离？
+							div1.style.left=0+"px";
+						}else if(par.offsetWidth-div1.offsetWidth<oEvent.clientX-disX){
+							div1.style.left=par.offsetWidth-div1.offsetWidth+"px";
+						}
+						else{
+							div1.style.left=oEvent.clientX-disX+"px";
+						}
+						
+						var bil=(oEvent.clientX-disX)/(par.offsetWidth-div1.offsetWidth);
+						
+						div2.style.width=400*bil+"px";
+						div2.style.height=400*bil+"px";
+					
+					
+					document.onmouseup=function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+					}
+				}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

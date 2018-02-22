@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form id="form1" action="" method="post">
+			<input type="text" id="user" />
+			<input type="submit" value="点击提交"/>
+		</form>
+		<script type="text/javascript">
+			window.onload=function(){
+				var user=document.getElementById("user");
+				var form1=document.getElementById("form1");
+				form1.onsubmit=function(){
+					var odate=new Date();
+//					odate.setDate(odate.getDay()+14);
+					document.cookie=user.value+"expires="+odate;
+//					alert(document.cookie);
+				}
+				
+			}
+			
+			
+			//cookie语法：名字=值；expires=时间
+			
+			//cookie是document的一个属性
+			document.cookie="user=user";//user=user，不是用冒号
+			document.cookie="pass=pass";
+			console.log(document.cookie);//输出结果以分号和空格连接
+			//上边两行代码会将两个数据存储到cookie，不会产生覆盖
+		</script>
+	</body>
+</html>

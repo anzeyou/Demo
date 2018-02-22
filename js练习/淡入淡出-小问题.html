@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				opacity: 0.3;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1" onmouseover="show()"></div>
+		<script type="text/javascript">
+			var opa=0.3;
+			var div1=document.getElementById("div1");
+			var timer=null;
+			var speed=0.1;
+			function show(){
+				timer=setInterval(function(){
+					div1.style.opacity=opa+0.1;
+					opa+=opa;
+				},30)
+			};
+			
+			
+			//注意:opa+=opa；如果不加此句，opa会一直不变，一直是0.3，所以div1的透明度
+			//也不会变化，所以表面上看定时器只会执行一次，其实是每次执行的值都没有改变
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn1">点击</button>
+		<script type="text/javascript">
+			//IE
+			document.onclick=function(){
+				alert(event.clientX+","+event.clientY);
+			}
+			//FF
+			var btn1=document.getElementById("btn1");
+			btn1.onmouseover=function(e){
+				alert(e.clientX+","+e.clientY);
+			}
+		</script>
+	</body>
+</html>

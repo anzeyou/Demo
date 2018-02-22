@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function Person(name,age){//构造函数
+				this.name=name;
+				this.age=age;
+				//return this//系统自动返回，不必写
+			}
+			Person.prototype.showname=function(){//原型
+				alert(this.name);
+			};
+			Person.prototype.showage=function(){
+				alert(this.age);
+			};
+			var person1=new Person("a",12);//使用new，系统会在构造方法内部自动创建this
+										   //指向新创建的对象，并将this自动返回
+			person1.showname();
+			person1.showage();
+			var person2=new Person("b",18);
+			person2.showname();
+			person2.showage();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//设置cookie
+			function setCookie(name,value,iday){
+				var odate=new Date();
+				odate.setDate(odate.getDate()+iday);
+				document.cookie=name+'='+value+';expires='+odate;
+				//分号很重要，因为cookie的数据
+				//是以"; "(逗号和空格)分离各个数据，expires是设置过期时间的，所以系统看到;expires
+				//就认识这是在设置过期时间。
+			}
+			setCookie("xingming","anan",1);
+			
+			
+			//获取cookie
+			function getCookie(name){
+				var arr=document.cookie.split("; ");
+				for(var i=0;i<arr.length;i++){
+					var arr2=arr[i].split("=");
+					if(arr2[0]==name){
+						return arr2[1];
+					}
+				}
+				//用户首次打开网页，网页还没有cookie时，当循环结束，返回空字符串
+				return "";
+			}
+
+
+			//删除cookie--设置过期时间为赋值就可以
+			function moveCookie(name){
+				setCookie(name,1,-1);//第二个参数不重要，主要是让cookie过期，最后一个参数为负数就可以
+			}
+			moveCookie("xingming");
+			
+			
+		</script>
+	</body>
+</html>

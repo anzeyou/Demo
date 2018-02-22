@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				top: 50px;
+				left: 0px;
+			}
+			#div2{
+				width: 1px;
+				height: 300px;
+				background: black;
+				position: absolute;
+				top: 0px;
+				left: 300px;
+			}
+			#div3{
+				width: 1px;
+				height: 300px;
+				background: black;
+				position: absolute;
+				top: 0px;
+				left: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="开始运动" onclick="startMove()"/>
+		<div id="div1"></div>
+		<!--div2是参照物-->
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<script type="text/javascript">
+			var timer=null;
+			function startMove(){
+				clearInterval(timer);//清除上一次的浮动
+				var div1=document.getElementById("div1");
+				timer=setInterval(function(){
+					//动态改变速度（原来的速度除以某一个值，值越大速度越慢反之则快）
+					var speed=(300-div1.offsetLeft)/30; 
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);//别忘了这句话
+					div1.style.left=div1.offsetLeft+speed+"px";
+				},30)
+			}
+			
+			
+			//注意1：var speed=(300-div1.offsetLeft)/30中如果不用除号，当div1的到左边的
+			//距离为0时速度会是最大值300，此时物体会瞬间到达目标点，用减号也不太合适，所以用除以
+			//某一个值比较合适
+			
+			//注意2：当运动到最后，div1.offsetLeft+speed为浮点型（带有小数），而px是最小的单位
+			//小于1px将被之间忽略，所以物体运动不到指定位置，这时候用上取整来解决这个问题
+			
+			//注意3：当物体反向运动时，到最后当位置到达（比如说）300.9，系统会忽略0.9，所以这个时候用
+			//下取整解决
+			
+			//重点：但凡遇到缓冲运动，一定别忘了取整
+		</script>
+	</body>
+</html>

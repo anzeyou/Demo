@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标画图</title>
+		<style type="text/css">
+			div{
+				width: 10px;
+				height: 10px;
+				background: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script type="text/javascript">
+			document.onmousemove=function(e){
+				var oEvent=e||event;
+				var div=document.getElementsByTagName("div");
+				var pos=getpos(oEvent);
+				for(var i=div.length-1;i>0;i--){
+					div[i].style.left=div[i-1].offsetLeft+"px";
+					div[i].style.top=div[i-1].offsetTop+"px";
+				}
+				div[0].style.left=pos.x+"px";
+				div[0].style.top=pos.y+"px";
+			}
+			
+			//获取事件对象-函数封装
+			function getpos(e){
+				var scrolltop=document.documentElement.scrollTop;
+				var scrollleft=document.documentElement.scrollLeft;
+				return{x:e.clientX+scrollleft,y:e.clientY+scrolltop};//将对象位置以json形式返回
+			}
+		</script>
+		
+		
+	</body>
+</html>

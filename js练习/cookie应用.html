@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form id="form1" action="http://www.zhinengshe.com" method="post">
+			<input type="text" id="user" name="user"/>
+			<input type="password" id="pass"  name="pass"/>
+			<input type="submit" value="点击提交" id="btn"/>
+		</form>
+		<script type="text/javascript">
+			window.onload=function(){
+				var btn=document.getElementById("btn");
+				var form1=document.getElementById("form1");
+				form1.onsubmit=function(){
+					var user=document.getElementById("user").value;
+					var pass=document.getElementById("pass").value;
+					setCookie("user",user,8);
+					setCookie("pass",pass,1);
+					getCookie("user");
+					getCookie("pass");
+					
+				}
+			}
+			
+			//cookie设置
+			function setCookie(name,value,iday){
+				var odate=new Date();
+				odate.setDate(odate.getDate()+iday);
+				document.cookie=name+'='+value+';expires='+odate;//分号很重要，因为cookie的数据
+							//是以"; "(逗号和空格)分离各个数据，expires是设置过期时间的，所以系统看到;expires
+							//就认识这是在设置过期时间。
+											
+			}
+			
+			//cookie获取
+			function getCookie(name){
+				var arr=document.cookie.split("; ");
+				for(var i=0;i<arr.length;i++){
+					var arr2=arr[i].split("=");
+					if(arr2[0]==name){
+						return arr2[1];
+					}
+				}
+				//用户首次打开网页，网页还没有cookie时，当循环结束，返回空字符串
+				return "";
+			}
+		</script>
+	</body>
+</html>

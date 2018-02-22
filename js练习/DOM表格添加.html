@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		姓名：<input type="text" name="" id="name" value="" />
+		年龄：<input type="text" name="" id="age" value="" />
+		<input type="button" name="" id="addbtn" value="添加" />
+		<table border="1px" width="500px" align="center" id="atab"> 
+			<thead>
+				<td>id</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>操作</td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Blue</td>
+					<td>27</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>张三</td>
+					<td>21</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>李四</td>
+					<td>25</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		<script type="text/javascript">{
+			window.onload=function(){
+				var atab=document.getElementById("atab");
+				var name=document.getElementById("name");
+				var age=document.getElementById("age");
+				var addbtn=document.getElementById("addbtn");
+				var id=atab.tBodies[0].rows.length+1;
+				var tbody=atab.tBodies[0].rows[1].cells[1].innerHTML;
+				addbtn.onclick=function(){
+					var tradd=document.createElement("tr");
+					//id
+					var tdadd=document.createElement("td");
+					tdadd.innerHTML=id++;
+					tradd.appendChild(tdadd);
+					//姓名
+					var tdadd2=document.createElement("td");
+					tdadd2.innerHTML=name.value;
+					tradd.appendChild(tdadd2);
+					//年龄
+					var tdadd=document.createElement("td");
+					tdadd.innerHTML=age.value;
+					tradd.appendChild(tdadd);
+					//操作
+					var tdadd=document.createElement("td");
+					tdadd.innerHTML='<a href="javascript:">删除</a>';
+					tradd.appendChild(tdadd);
+					//将行追加到表格中
+					atab.tBodies[0].appendChild(tradd);
+					//删除所在行
+					var ai=atab.getElementsByTagName("a");
+					for(var i=0;i<ai.length;i++){
+						ai[i].onclick=function(){
+							atab.tBodies[0].removeChild(this.parentNode.parentNode);
+						}
+					}
+					//删除所在行
+//					atab.getElementsByTagName("a")[0].onclick=function(){
+//						atab.tBodies[0].removeChild(this.parentNode.parentNode);
+//						
+//					}
+					
+				}
+				
+				
+				
+				
+			}
+		}</script>
+	</body>
+</html>

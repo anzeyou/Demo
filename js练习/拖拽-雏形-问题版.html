@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var disX=0;
+				var disY=0;
+				div1.onmousedown=function(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-div1.offsetLeft;
+					disY=oEvent.clientY-div1.offsetTop;
+					
+					div1.onmousemove=function(ev){
+						var oEvent=ev||event;
+						div1.style.left=oEvent.clientX-disX+"px";
+						div1.style.top=oEvent.clientY-disY+"px";
+					}
+					
+					div1.onmouseup=function(){
+						div1.onmousemove=null;
+						div1.onmouseup=null;
+					}
+				}
+				
+			}
+			
+			//问题总结：
+			//1.鼠标事件加在div1上，当鼠标的移动速度加快，div1和鼠标会脱离
+			  //因为事件加在div1上，一旦脱离，会导致事件不生效，所以二者脱离后，div1不会跟着鼠标走
+			//2.当速度加快，二者脱离，鼠标松开，在鼠标松开的状态下再次移动到div1上时，div1又会运动，
+		</script>
+	</body>
+</html>

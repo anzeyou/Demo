@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖拽-IE下的事件捕获</title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var disX=0;
+				var disY=0;
+				//鼠标事件都加在document上，而不是div1上，防止鼠标加速div1和鼠标脱离
+				div1.onmousedown=function(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-div1.offsetLeft;
+					disY=oEvent.clientY-div1.offsetTop;
+					
+					div1.onmousemove=function(ev){
+						var oEvent=ev||event;
+						div1.style.left=oEvent.clientX-disX+"px";
+						div1.style.top=oEvent.clientY-disY+"px";
+					}
+					
+					div1.onmouseup=function(){
+						div1.onmousemove=null;
+						div1.onmouseup=null;
+					}
+					
+					div1.setCapture();
+					
+				}
+				
+			}
+			
+			//利用事件捕获
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>多个div同时变宽</title>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+				
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background: red;
+				margin-top: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div></div>
+		<div></div>
+		<div></div>
+		
+		<script type="text/javascript">
+			var divs=document.getElementsByTagName("div");
+			var timer=null;
+			var speed=0;
+			for(var i=0;i<divs.length;i++){
+				divs[i].timer=null;
+				divs[i].onmouseover=function(){
+					
+					show(this,300);
+				}
+				divs[i].onmouseout=function(){
+					show(this,100);
+				}
+			}
+			//运动框架
+			function show(an,target){
+				clearInterval(an.timer);
+				an.timer=setInterval(function(){
+					if(an.offsetWidth==target){
+						clearInterval(an.timer);
+					}
+					else{
+						speed=(target-an.offsetWidth)/20;
+						speed=speed>0?Math.ceil(speed):Math.floor(speed);
+						an.style.width=an.offsetWidth+speed+"px";
+					}
+				},30)
+			}
+			
+		</script>
+	</body>
+</html>

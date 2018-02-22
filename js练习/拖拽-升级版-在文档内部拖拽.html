@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖拽-升级版</title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div1=document.getElementById("div1");
+				var disX=0;
+				var disY=0;
+				//鼠标事件都加在document上，而不是div1上，防止鼠标加速div1和鼠标脱离
+				document.onmousedown=function(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-div1.offsetLeft;
+					disY=oEvent.clientY-div1.offsetTop;
+					
+					document.onmousemove=function(ev){
+						var oEvent=ev||event;
+						div1.style.left=oEvent.clientX-disX+"px";
+						div1.style.top=oEvent.clientY-disY+"px";
+						//左极限位置
+						if(div1.offsetLeft<0){
+							div1.style.left=0+"px";
+						}
+						//右极限位置
+						else if(document.documentElement.clientWidth-div1.offsetWidth<oEvent.clientX-disX){
+							div1.style.left=(document.documentElement.clientWidth-div1.offsetWidth)+"px";
+						}
+						//上极限位置
+						if(div1.offsetTop<0){
+							div1.style.top=0+"px";
+						}
+						//下极限位置
+						else if(document.documentElement.clientHeight-div1.offsetHeight<oEvent.clientY-disY){
+							div1.style.top=(document.documentElement.clientHeight-div1.offsetHeight)+"px";
+						}
+						
+					}
+					
+					document.onmouseup=function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+					}
+				}
+				
+			}
+			
+			//解决了
+			//1.在浏览器中任意拖拽div1都不会跑到浏览器外部
+			//2.将鼠标事件添加在document上而不是div1上，可以实现鼠标快速移动，div1和鼠标都不会脱离
+			
+		</script>
+	</body>
+</html>

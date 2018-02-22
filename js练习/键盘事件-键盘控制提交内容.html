@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ctrl shift 回车同时按下提交内容</title>
+	</head>
+	<body>
+		<input type="text"  id="inp" value="" /><br />
+		<textarea name="" rows="10" cols="30" id="textarea"></textarea>
+		<script type="text/javascript">
+			window.onload=function(){
+				var inp=document.getElementById("inp");
+				var tex=document.getElementById("textarea");
+				inp.onkeydown=function(e){
+					var oEvent=e||event;
+					//下面是三个键同时按住，内容才会被提交
+					if(oEvent.keyCode==13 && oEvent.ctrlKey && oEvent.shiftKey){
+						var inpval=inp.value;
+						tex.value+=inpval+"\n";
+					}
+					
+				}
+			}
+		</script>
+	</body>
+</html>

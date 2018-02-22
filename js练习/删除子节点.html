@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="aul">
+			<li>aaa<a href="javascript:">删除</a></li>
+			<li>sss<a href="javascript:">删除</a></li>
+			<li>ddd<a href="javascript:">删除</a></li>
+			<li>fff<a href="javascript:">删除</a></li>
+			
+		</ul>
+		<script type="text/javascript">
+			window.onload=function(){
+				var aul=document.getElementById("aul");
+				var aa=aul.getElementsByTagName("a");
+				for(var i=0;i<aa.length;i++){
+					aa[i].onclick=function(){
+						aul.removeChild(this.parentNode);
+					}
+				}
+			};
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

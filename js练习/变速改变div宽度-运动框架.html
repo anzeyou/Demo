@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="div1" onmouseover="move(300)" onmouseout="move(100)"></div>
+		
+		<script type="text/javascript">
+			var btn=document.getElementById("btn");
+			var div1=document.getElementById("div1");
+			var timer=null;
+			var speed=0;
+			//运动框架
+			function move(target){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					if(div1.offsetWidth==target){
+						clearInterval(timer);
+					}
+					else{
+						speed=(target-div1.offsetWidth)/20;
+						speed=speed>0?Math.ceil(speed):Math.floor(speed);
+						div1.style.width=div1.offsetWidth+speed+"px";
+					}
+				},30)
+			}
+		</script>
+	</body>
+</html>

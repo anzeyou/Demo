@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//不使用原型
+			var arr1=[1,2,3];
+			var arr2=[4,5,6];
+			//给对象加东西-->css中的行间样式--一次给一个元素加东西
+			arr1.sum=function(){//这里是关于arr1的方法，所以arr2调用报错，
+								//若想这一类都调用该方法，就要使用原型（css中的class-->给一组元素添加样式）
+				var he=0;
+				for(var i=0;i<arr1.length;i++){
+					he+=this[i];
+				}
+				return he;
+			}
+			alert(arr1.sum());
+			alert(arr2.sum());
+
+
+
+			//使用原型
+//			var arr1=[1,2,3];
+//			var arr2=[4,5,6];
+//			Array.prototype.sum=function(){
+//				var he=0;
+//				for(var i=0;i<arr1.length;i++){
+//					he+=this[i];
+//				}
+//				return he;
+//			}
+//			alert(arr1.sum());
+//			alert(arr2.sum());
+		</script>
+	</body>
+</html>

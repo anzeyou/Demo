@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" id="btn" value="按钮"/>
+		<script type="text/javascript">
+			function myaddEvent(obj,name,fn){
+				//IE
+				if(obj.attachEvent){
+					obj.attachEvent("on"+name,fn);//IE下事件带on，所以在这里加上
+				}
+				//FF
+				else{
+					obj.addEventListener(name,fn,false);//false勿忘
+					
+				}
+			}
+			window.onload=function(){
+				var btn=document.getElementById("btn");
+				//调用函数
+				myaddEvent(btn,"click",function(){alert("我是第一个");});
+				myaddEvent(btn,"click",function(){alert("我是第二个");});
+			};
+		</script>
+	</body>
+</html>
